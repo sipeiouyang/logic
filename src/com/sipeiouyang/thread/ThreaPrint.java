@@ -1,6 +1,7 @@
 package com.sipeiouyang.thread;
 
 import java.util.Scanner;
+import java.util.concurrent.Semaphore;
 
 /**
  * @author sipeiouyang
@@ -19,6 +20,8 @@ import java.util.Scanner;
  *
  */
 public class ThreaPrint implements Runnable {
+
+    private static Semaphore semaphore = new Semaphore(0);
 
     /**
      * 当前打印的线程
@@ -59,6 +62,7 @@ public class ThreaPrint implements Runnable {
                     currentPrintThread = 0;
                 }
                 printSize++;
+                semaphore.release(1);
             }
         }
     }
@@ -82,6 +86,6 @@ public class ThreaPrint implements Runnable {
             }
             thread.start();
         }
-        Thread.sleep(1000);
+        semaphore.acquire(n * m);
     }
 }
