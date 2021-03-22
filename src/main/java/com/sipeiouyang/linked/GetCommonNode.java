@@ -1,5 +1,7 @@
 package com.sipeiouyang.linked;
 
+import com.sipeiouyang.linked.domain.Node;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -33,12 +35,4 @@ public class GetCommonNode {
         return resutl;
     }
 
-}
-
-class Node {
-    public int value;
-    public Node next;
-    public Node(int data) {
-        this.value = data;
-    }
 }

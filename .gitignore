@@ -1,2 +1,6 @@
 .idea
 logic.iml
+*.class
+target/classes/META-INF/logic.kotlin_module
+
+.gitignore
