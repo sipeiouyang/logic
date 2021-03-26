@@ -41,4 +41,35 @@ public class MinPathSum {
         return dp[m - 1][n - 1];
     }
 
+    /**
+     * fun2对fun1的空间复杂度进行了优化，空间复杂度为O(MIN(M,N)),
+     * 时间复杂度依旧为O(M*N)
+     **/
+    public static Integer fun2(int[][] arr){
+        if (arr == null || arr.length < 1 || arr[0] == null || arr[0].length < 1){
+            return 0;
+        }
+        int max = Math.max(arr.length, arr[0].length);
+        int min = Math.max(arr.length, arr[0].length);
+        boolean colLess = (min == arr[0].length);
+        int[] dp = new int[min];
+        for (int i = 0; i < min; i++){
+            if (i == 0){
+                dp[i] = arr[0][0];
+                continue;
+            }
+            dp[i] = colLess ? (dp[i - 1] + arr[0][i]) : (dp[i - 1] + arr[i][0]);
+        }
+        for(int i = 1; i < max; i++){
+            for (int j = 0; j < min; j++){
+                if (j == 0){
+                    dp[j] = dp[j] + (colLess ? arr[i][j] : arr[j][i]);
+                    continue;
+                }
+                dp[j] = Math.min(dp[j - 1], dp[j]) + (colLess ? arr[i][j] : arr[j][i]);
+            }
+        }
+        return dp[min - 1];
+    }
+
 }
