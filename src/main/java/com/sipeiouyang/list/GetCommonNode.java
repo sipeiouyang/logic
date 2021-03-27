@@ -1,6 +1,6 @@
-package com.sipeiouyang.linked;
+package com.sipeiouyang.list;
 
-import com.sipeiouyang.linked.domain.Node;
+import com.sipeiouyang.list.domain.Node;
 
 import java.util.LinkedList;
 import java.util.List;

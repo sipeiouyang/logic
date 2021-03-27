@@ -1,4 +1,4 @@
-package com.sipeiouyang.linked.domain;
+package com.sipeiouyang.list.domain;
 
 /**
  * @author sipeiouyang
@@ -6,7 +6,7 @@ package com.sipeiouyang.linked.domain;
  */
 public class DoubleNode {
     public int value;
-    public DoubleNode last;
+    public DoubleNode pre;
     public DoubleNode next;
     public DoubleNode(int data) {
         this.value = data;

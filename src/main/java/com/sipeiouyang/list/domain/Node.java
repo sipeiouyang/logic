@@ -1,4 +1,4 @@
-package com.sipeiouyang.linked.domain;
+package com.sipeiouyang.list.domain;
 
 /**
  * @author sipeiouyang
