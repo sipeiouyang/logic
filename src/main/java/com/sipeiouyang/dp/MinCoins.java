@@ -77,7 +77,6 @@ public class MinCoins {
         dp[arr.length][0] = 0;
         for (int i = arr.length - 1; i >= 0; i--){
             for (int j = 0; j <= aim; j++){
-                dp[i][j] = -1;
                 if (dp[i + 1][j] != -1){
                     dp[i][j] = dp[i + 1][j];
                 }
