@@ -16,5 +16,14 @@ public class MinCoinsTest extends LogicTest {
         Assert.assertEquals(MinCoins.minCoins(arr, 20), 4);
         Assert.assertEquals(MinCoins.minCoins(arr, 0), 0);
         Assert.assertEquals(MinCoins.minCoins(arr, 1), -1);
+        Assert.assertEquals(MinCoins.minCoins(arr, 2), 1);
+        Assert.assertEquals(MinCoins.minCoins(arr, 3), 1);
+        Assert.assertEquals(MinCoins.minCoins(arr, 5), 1);
+        Assert.assertEquals(MinCoins.minCoinsDp(arr, 20), 4);
+        Assert.assertEquals(MinCoins.minCoinsDp(arr, 0), 0);
+        Assert.assertEquals(MinCoins.minCoinsDp(arr, 1), -1);
+        Assert.assertEquals(MinCoins.minCoinsDp(arr, 2), 1);
+        Assert.assertEquals(MinCoins.minCoinsDp(arr, 3), 1);
+        Assert.assertEquals(MinCoins.minCoinsDp(arr, 5), 1);
     }
 }

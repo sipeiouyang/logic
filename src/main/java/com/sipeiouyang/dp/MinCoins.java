@@ -51,4 +51,46 @@ public class MinCoins {
         return result;
     }
 
+    /**
+     * 基于暴力解法的优化方法
+     * minCoins(int[] arr, int index, int aim)在递归时，
+     * 只要index和aim确认之后就能确定值，
+     * 所以可以用一个二维dp数组来优化,由暴力解法可知dp[0][aim]就是答案
+     *
+     * dp[i][rest]的值如何确定？
+     *
+     * dp[i][aim] = min{ dp[i][aim-arr[i]] + 1, dp[i+1][rest] }
+     *
+     * 最终的答案是dp[0][aim]的值，而完美直到最后一行的值（除了dp[arr.length][0]是0，其他都是-1）
+     * 所以可以从最后一行从下往上，从左往右求
+     **/
+    public static int minCoinsDp(int[] arr, int aim){
+        if (arr == null || arr.length < 1 || aim < 0){
+            return -1;
+        }
+        int[][] dp = new int[arr.length + 1][aim + 1];
+        for (int i = 0; i < dp.length; i++){
+            for (int j = 0; j < dp[0].length; j++){
+                dp[i][j] = -1;
+            }
+        }
+        dp[arr.length][0] = 0;
+        for (int i = arr.length - 1; i >= 0; i--){
+            for (int j = 0; j <= aim; j++){
+                dp[i][j] = -1;
+                if (dp[i + 1][j] != -1){
+                    dp[i][j] = dp[i + 1][j];
+                }
+                if (j - arr[i] >= 0 && dp[i][j - arr[i]] != -1){
+                    if (dp[i][j] == -1){
+                        dp[i][j] = dp[i][j - arr[i]] + 1;
+                    }else {
+                        dp[i][j] = Math.min(dp[i][j], dp[i][j - arr[i]] + 1);
+                    }
+                }
+            }
+        }
+        return dp[0][aim];
+    }
+
 }
