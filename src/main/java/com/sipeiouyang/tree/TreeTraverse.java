@@ -1,8 +1,6 @@
 package com.sipeiouyang.tree;
 
 import com.sipeiouyang.tree.domain.Node;
-
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
