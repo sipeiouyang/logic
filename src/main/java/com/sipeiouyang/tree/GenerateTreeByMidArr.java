@@ -12,7 +12,7 @@ import java.util.Objects;
  * 用这个有序数组生成一棵平衡搜索二叉 树，
  * 并且该搜索二叉树中序遍历的结果与 sortArr 一致。
  */
-public class ConstructTreeByArr {
+public class GenerateTreeByMidArr {
 
     public static Node getTree(int[] arr){
         if (Objects.isNull(arr) || arr.length < 1){
