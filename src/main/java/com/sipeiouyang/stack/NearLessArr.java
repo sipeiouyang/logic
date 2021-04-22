@@ -1,7 +1,7 @@
 package com.sipeiouyang.stack;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -48,6 +48,48 @@ public class NearLessArr {
             int cur = stack.pop();
             result[cur][0] = stack.isEmpty() ? -1 : stack.peek();
             result[cur][1] = -1;
+        }
+        return result;
+    }
+
+    /**
+     * 重复数组获取
+     **/
+    public static int[][] getNearLessRepeat(int[] arr){
+        if (Objects.isNull(arr) || arr.length < 1){
+            return null;
+        }
+        int[][] result = new int[arr.length][2];
+        /**
+         * 数组可能有重复的值，所以重复的值放到一个队列内
+         **/
+        Stack<LinkedList<Integer>> stacks = new Stack<>();
+        for (int i = 0; i < arr.length; i++){
+            while (!stacks.isEmpty() && arr[i] < arr[stacks.peek().getFirst()]){
+                LinkedList<Integer> linkedList = stacks.pop();
+                int leftIndex = stacks.isEmpty() ? -1 : stacks.peek().getLast();
+                while (!linkedList.isEmpty()){
+                    int index = linkedList.pop();
+                    result[index][0] = leftIndex;
+                    result[index][1] = i;
+                }
+            }
+            if (!stacks.isEmpty() && arr[stacks.peek().getLast()] == arr[i]){
+                stacks.peek().addLast(i);
+            }
+            LinkedList<Integer> linkedList = new LinkedList<>();
+            linkedList.addLast(i);
+            stacks.add(linkedList);
+        }
+        while (!stacks.isEmpty()){
+            LinkedList<Integer> linkedList = stacks.pop();
+            int rightIndex = -1;
+            int leftIndex = stacks.isEmpty() ? -1 : stacks.peek().getLast();
+            while (!linkedList.isEmpty()){
+                int index = linkedList.pop();
+                result[index][0] = leftIndex;
+                result[index][1] = rightIndex;
+            }
         }
         return result;
     }
